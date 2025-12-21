@@ -12,8 +12,8 @@ const CollagePlaceholder = ({ images = [], className = "" }: CollagePlaceholderP
           <div
             key={i}
             className="bg-cream-dark/50 rounded-lg flex items-center justify-center 
-                       border-2 border-dashed border-rose/30 transition-all duration-300
-                       hover:border-rose/50 hover:bg-cream-dark/70"
+                       border-2 border-dashed border-mint/30 transition-all duration-300
+                       hover:border-mint/50 hover:bg-cream-dark/70"
           >
             <span className="text-muted-foreground text-xs md:text-sm text-center px-2">
               Photo {i + 1}

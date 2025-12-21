@@ -13,8 +13,8 @@ const BirthdayMessagePage = () => {
 
         {/* Decorative background */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_hsl(var(--rose-light)/0.3)_0%,_transparent_50%)]" />
-          <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_hsl(var(--accent)/0.2)_0%,_transparent_40%)]" />
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_hsl(var(--mint-light)/0.4)_0%,_transparent_50%)]" />
+          <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_hsl(var(--pastel-blue-light)/0.3)_0%,_transparent_40%)]" />
         </div>
 
         {/* Sparkles */}
@@ -22,7 +22,7 @@ const BirthdayMessagePage = () => {
           {[...Array(8)].map((_, i) => (
             <Sparkles
               key={i}
-              className="absolute text-gold animate-sparkle"
+              className="absolute text-mint animate-sparkle"
               style={{
                 left: `${10 + i * 12}%`,
                 top: `${15 + (i % 4) * 20}%`,
@@ -45,7 +45,7 @@ const BirthdayMessagePage = () => {
           </h1>
           
           <p 
-            className="font-handwritten text-3xl md:text-4xl text-rose-dark mb-8
+            className="font-handwritten text-3xl md:text-4xl text-mint-dark mb-8
                        opacity-0 animate-slide-up"
             style={{ animationDelay: "0.5s" }}
           >
@@ -67,7 +67,7 @@ const BirthdayMessagePage = () => {
           >
             <button
               onClick={() => navigate("/second-collage")}
-              className="btn-romantic inline-flex items-center gap-2"
+              className="btn-romantic inline-flex items-center gap-2 bg-gradient-to-r from-mint to-pastel-blue"
             >
               <span>Continue</span>
               <ChevronRight className="w-5 h-5" />
@@ -86,7 +86,7 @@ const BirthdayMessagePage = () => {
                        flex items-center justify-center transition-all duration-300
                        hover:bg-card hover:shadow-glow hover:scale-110"
           >
-            <ChevronRight className="w-5 h-5 text-rose-dark" />
+            <ChevronRight className="w-5 h-5 text-mint-dark" />
           </button>
         </div>
       </div>
