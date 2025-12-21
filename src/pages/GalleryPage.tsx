@@ -1,69 +1,143 @@
 import { useState } from "react";
 import BackButton from "@/components/BackButton";
 import PageTransition from "@/components/PageTransition";
-import { X, Camera } from "lucide-react";
+import { X, Camera, ImageIcon } from "lucide-react";
 
-// Placeholder photos - you can replace these with actual images
-const photos = Array.from({ length: 12 }, (_, i) => ({
-  id: i + 1,
-  placeholder: true,
-  label: `Memory ${i + 1}`,
-}));
+// Timeline events - you can customize these
+const timelineEvents = [
+  {
+    id: 1,
+    eventName: "Childhood Days",
+    photos: [
+      { id: 1, label: "Memory 1" },
+      { id: 2, label: "Memory 2" },
+      { id: 3, label: "Memory 3" },
+    ],
+  },
+  {
+    id: 2,
+    eventName: "School Years",
+    photos: [
+      { id: 4, label: "Memory 4" },
+      { id: 5, label: "Memory 5" },
+    ],
+  },
+  {
+    id: 3,
+    eventName: "College Life",
+    photos: [
+      { id: 6, label: "Memory 6" },
+      { id: 7, label: "Memory 7" },
+      { id: 8, label: "Memory 8" },
+    ],
+  },
+  {
+    id: 4,
+    eventName: "First Job",
+    photos: [
+      { id: 9, label: "Memory 9" },
+      { id: 10, label: "Memory 10" },
+    ],
+  },
+  {
+    id: 5,
+    eventName: "Adventures Together",
+    photos: [
+      { id: 11, label: "Memory 11" },
+      { id: 12, label: "Memory 12" },
+      { id: 13, label: "Memory 13" },
+    ],
+  },
+  {
+    id: 6,
+    eventName: "Special Moments",
+    photos: [
+      { id: 14, label: "Memory 14" },
+      { id: 15, label: "Memory 15" },
+    ],
+  },
+];
 
 const GalleryPage = () => {
-  const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<{ eventId: number; photoId: number } | null>(null);
 
   return (
     <PageTransition>
-      <div className="page-container bg-cream py-20 px-4 md:px-6 overflow-y-auto">
+      <div className="min-h-screen w-full bg-cream relative">
         <BackButton to="/hub" />
 
         {/* Background decoration */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-rose-light/10 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-mint-light/20 to-transparent" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-pastel-blue-light/20 rounded-full blur-3xl" />
         </div>
 
-        <div className="max-w-6xl mx-auto pt-10 relative z-10">
-          {/* Title */}
-          <div className="text-center mb-10 opacity-0 animate-slide-up">
-            <Camera className="w-12 h-12 text-rose mx-auto mb-4" />
-            <h1 className="font-display text-4xl md:text-5xl text-foreground mb-2">
-              Photo Memories
-            </h1>
-            <p className="font-handwritten text-xl text-rose-dark">
-              A journey through time 📸
-            </p>
-          </div>
+        {/* Scrollable content */}
+        <div className="relative z-10 px-4 md:px-6 py-20 pb-32 overflow-y-auto min-h-screen">
+          <div className="max-w-4xl mx-auto pt-10">
+            {/* Title */}
+            <div className="text-center mb-12 opacity-0 animate-slide-up">
+              <Camera className="w-12 h-12 text-mint mx-auto mb-4" />
+              <h1 className="font-display text-4xl md:text-5xl text-foreground mb-2">
+                Journey Through Time
+              </h1>
+              <p className="font-handwritten text-xl text-mint-dark">
+                A timeline of beautiful memories 📸
+              </p>
+            </div>
 
-          {/* Masonry-style gallery */}
-          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-            {photos.map((photo, index) => (
-              <div
-                key={photo.id}
-                className="break-inside-avoid opacity-0 animate-fade-in"
-                style={{ animationDelay: `${0.1 + index * 0.05}s` }}
-              >
-                <button
-                  onClick={() => setSelectedPhoto(photo.id)}
-                  className="w-full bg-cream-dark rounded-xl overflow-hidden shadow-card
-                             transition-all duration-300 hover:shadow-glow hover:scale-[1.02]
-                             focus:outline-none focus:ring-2 focus:ring-rose/50"
-                  style={{
-                    height: `${180 + (index % 3) * 60}px`,
-                  }}
+            {/* Timeline */}
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="timeline-line" />
+
+              {/* Timeline events */}
+              {timelineEvents.map((event, eventIndex) => (
+                <div
+                  key={event.id}
+                  className="relative mb-16 last:mb-0 opacity-0 animate-slide-up"
+                  style={{ animationDelay: `${0.2 + eventIndex * 0.15}s` }}
                 >
-                  <div className="w-full h-full flex items-center justify-center 
-                                  border-2 border-dashed border-rose/20 bg-secondary/50">
-                    <div className="text-center p-4">
-                      <Camera className="w-8 h-8 text-rose/40 mx-auto mb-2" />
-                      <span className="text-muted-foreground text-sm">
-                        {photo.label}
-                      </span>
+                  {/* Timeline dot */}
+                  <div className="timeline-dot" style={{ top: "1.5rem" }} />
+
+                  {/* Event content - alternating sides */}
+                  <div className={`flex ${eventIndex % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                    <div className="w-1/2" />
+                    <div className={`w-1/2 ${eventIndex % 2 === 0 ? 'pl-8' : 'pr-8'}`}>
+                      {/* Event name */}
+                      <h3 className="font-display text-xl md:text-2xl text-foreground mb-4 
+                                     bg-cream px-3 py-1 rounded-lg inline-block shadow-soft">
+                        {event.eventName}
+                      </h3>
+
+                      {/* Photos grid */}
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        {event.photos.map((photo) => (
+                          <button
+                            key={photo.id}
+                            onClick={() => setSelectedPhoto({ eventId: event.id, photoId: photo.id })}
+                            className="aspect-square bg-cream-dark rounded-xl overflow-hidden shadow-card
+                                       transition-all duration-300 hover:shadow-glow hover:scale-[1.03]
+                                       focus:outline-none focus:ring-2 focus:ring-mint/50
+                                       border-2 border-dashed border-mint/30"
+                          >
+                            <div className="w-full h-full flex items-center justify-center bg-mint-light/30">
+                              <div className="text-center p-2">
+                                <ImageIcon className="w-6 h-6 md:w-8 md:h-8 text-mint/50 mx-auto mb-1" />
+                                <span className="text-muted-foreground text-xs md:text-sm">
+                                  {photo.label}
+                                </span>
+                              </div>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </button>
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -89,11 +163,11 @@ const GalleryPage = () => {
                 <X className="w-5 h-5 text-foreground" />
               </button>
               
-              <div className="aspect-video bg-cream-dark flex items-center justify-center">
+              <div className="aspect-video bg-mint-light/30 flex items-center justify-center">
                 <div className="text-center">
-                  <Camera className="w-16 h-16 text-rose/30 mx-auto mb-4" />
+                  <ImageIcon className="w-16 h-16 text-mint/40 mx-auto mb-4" />
                   <p className="text-muted-foreground">
-                    Photo {selectedPhoto} Placeholder
+                    Photo Placeholder
                   </p>
                   <p className="text-muted-foreground/60 text-sm mt-2">
                     Click outside to close

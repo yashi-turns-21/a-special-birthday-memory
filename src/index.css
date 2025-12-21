@@ -6,84 +6,87 @@
 
 @layer base {
   :root {
-    --background: 30 40% 96%;
-    --foreground: 20 25% 25%;
+    --background: 180 30% 98%;
+    --foreground: 200 25% 25%;
 
-    --card: 30 30% 98%;
-    --card-foreground: 20 25% 25%;
+    --card: 180 25% 99%;
+    --card-foreground: 200 25% 25%;
 
-    --popover: 30 30% 98%;
-    --popover-foreground: 20 25% 25%;
+    --popover: 180 25% 99%;
+    --popover-foreground: 200 25% 25%;
 
-    --primary: 350 60% 72%;
-    --primary-foreground: 30 40% 98%;
+    --primary: 168 45% 65%;
+    --primary-foreground: 180 30% 98%;
 
-    --secondary: 30 35% 92%;
-    --secondary-foreground: 20 25% 30%;
+    --secondary: 200 35% 92%;
+    --secondary-foreground: 200 25% 30%;
 
-    --muted: 30 25% 90%;
-    --muted-foreground: 20 15% 50%;
+    --muted: 180 20% 92%;
+    --muted-foreground: 200 15% 50%;
 
-    --accent: 350 45% 80%;
-    --accent-foreground: 20 25% 25%;
+    --accent: 200 50% 80%;
+    --accent-foreground: 200 25% 25%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 30% 85%;
-    --input: 30 30% 85%;
-    --ring: 350 60% 72%;
+    --border: 180 25% 88%;
+    --input: 180 25% 88%;
+    --ring: 168 45% 65%;
 
     --radius: 1rem;
 
-    /* Custom romantic colors */
-    --rose: 350 60% 72%;
-    --rose-light: 350 70% 85%;
-    --rose-dark: 350 50% 55%;
-    --cream: 35 45% 95%;
-    --cream-dark: 35 35% 88%;
-    --blush: 15 50% 90%;
+    /* Custom pastel colors */
+    --mint: 168 45% 75%;
+    --mint-light: 168 55% 88%;
+    --mint-dark: 168 40% 55%;
+    --pastel-blue: 200 50% 80%;
+    --pastel-blue-light: 200 60% 90%;
+    --pastel-blue-dark: 200 45% 60%;
+    --cream: 180 20% 97%;
+    --cream-dark: 180 15% 92%;
+    --blush: 168 30% 92%;
     --vintage-paper: 40 40% 92%;
     --parchment: 38 50% 85%;
     --gold: 38 60% 55%;
     --gold-light: 40 70% 75%;
 
     /* Gradients */
-    --gradient-romantic: linear-gradient(135deg, hsl(var(--cream)) 0%, hsl(var(--rose-light)) 50%, hsl(var(--blush)) 100%);
-    --gradient-soft: linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--secondary)) 100%);
-    --gradient-warm: linear-gradient(135deg, hsl(var(--blush)) 0%, hsl(var(--cream)) 100%);
+    --gradient-romantic: linear-gradient(135deg, hsl(var(--cream)) 0%, hsl(var(--mint-light)) 50%, hsl(var(--pastel-blue-light)) 100%);
+    --gradient-soft: linear-gradient(180deg, hsl(var(--cream)) 0%, hsl(var(--mint-light)) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(var(--pastel-blue-light)) 0%, hsl(var(--cream)) 100%);
 
     /* Shadows */
-    --shadow-soft: 0 4px 20px -5px hsl(var(--rose) / 0.2);
-    --shadow-glow: 0 0 30px hsl(var(--rose) / 0.3);
+    --shadow-soft: 0 4px 20px -5px hsl(var(--mint) / 0.3);
+    --shadow-glow: 0 0 30px hsl(var(--mint) / 0.4);
     --shadow-card: 0 8px 32px -8px hsl(var(--foreground) / 0.1);
   }
 
   .dark {
-    --background: 20 20% 12%;
-    --foreground: 30 30% 92%;
+    --background: 200 20% 12%;
+    --foreground: 180 30% 92%;
 
-    --card: 20 18% 16%;
-    --card-foreground: 30 30% 92%;
+    --card: 200 18% 16%;
+    --card-foreground: 180 30% 92%;
 
-    --popover: 20 18% 16%;
-    --popover-foreground: 30 30% 92%;
+    --popover: 200 18% 16%;
+    --popover-foreground: 180 30% 92%;
 
-    --primary: 350 55% 65%;
-    --primary-foreground: 20 20% 10%;
+    --primary: 168 45% 55%;
+    --primary-foreground: 200 20% 10%;
 
-    --secondary: 20 15% 22%;
-    --secondary-foreground: 30 30% 90%;
+    --secondary: 200 15% 22%;
+    --secondary-foreground: 180 30% 90%;
 
-    --muted: 20 15% 25%;
-    --muted-foreground: 30 20% 60%;
+    --muted: 200 15% 25%;
+    --muted-foreground: 180 20% 60%;
 
-    --accent: 350 40% 45%;
-    --accent-foreground: 30 30% 92%;
+    --accent: 200 40% 35%;
+    --accent-foreground: 180 30% 92%;
 
-    --border: 20 15% 25%;
-    --input: 20 15% 25%;
-    --ring: 350 55% 65%;
+    --border: 200 15% 25%;
+    --input: 200 15% 25%;
+    --ring: 168 45% 55%;
   }
 }
 
@@ -138,8 +141,13 @@
   }
 
   .collage-placeholder {
-    @apply w-full h-full bg-gradient-to-br from-cream via-secondary to-blush
+    @apply w-full h-full bg-gradient-to-br from-cream via-mint-light to-pastel-blue-light
            flex items-center justify-center;
+  }
+
+  .collage-bg-placeholder {
+    @apply w-full h-full flex items-center justify-center relative;
+    background: linear-gradient(135deg, hsl(var(--cream)) 0%, hsl(var(--mint-light)) 50%, hsl(var(--pastel-blue-light)) 100%);
   }
 
   .floating {
@@ -155,6 +163,14 @@
   .stagger-3 { animation-delay: 0.3s; }
   .stagger-4 { animation-delay: 0.4s; }
   .stagger-5 { animation-delay: 0.5s; }
+
+  .timeline-line {
+    @apply absolute left-1/2 top-0 bottom-0 w-0.5 bg-mint/40 -translate-x-1/2;
+  }
+
+  .timeline-dot {
+    @apply w-4 h-4 rounded-full bg-mint border-4 border-cream absolute left-1/2 -translate-x-1/2;
+  }
 }
 
 @layer utilities {
@@ -195,12 +211,19 @@
   .bg-blush { background-color: hsl(var(--blush)); }
   .bg-vintage-paper { background-color: hsl(var(--vintage-paper)); }
   .bg-parchment { background-color: hsl(var(--parchment)); }
+  .bg-mint { background-color: hsl(var(--mint)); }
+  .bg-mint-light { background-color: hsl(var(--mint-light)); }
+  .bg-pastel-blue { background-color: hsl(var(--pastel-blue)); }
+  .bg-pastel-blue-light { background-color: hsl(var(--pastel-blue-light)); }
   
-  .text-rose { color: hsl(var(--rose)); }
-  .text-rose-dark { color: hsl(var(--rose-dark)); }
+  .text-mint { color: hsl(var(--mint)); }
+  .text-mint-dark { color: hsl(var(--mint-dark)); }
+  .text-pastel-blue { color: hsl(var(--pastel-blue)); }
+  .text-pastel-blue-dark { color: hsl(var(--pastel-blue-dark)); }
   .text-gold { color: hsl(var(--gold)); }
 
-  .border-rose { border-color: hsl(var(--rose)); }
+  .border-mint { border-color: hsl(var(--mint)); }
+  .border-pastel-blue { border-color: hsl(var(--pastel-blue)); }
   .border-gold { border-color: hsl(var(--gold)); }
 }
 
