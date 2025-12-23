@@ -64,12 +64,12 @@ const LettersOverviewPage = () => {
                     className="letter-card w-full aspect-square flex flex-col items-center justify-center gap-3
                                group"
                   >
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-cream flex items-center justify-center
-                                    transition-all duration-300 group-hover:bg-mint-light/50 group-hover:scale-110">
-                      <Mail className="w-6 h-6 md:w-8 md:h-8 text-mint-dark transition-colors 
-                                       group-hover:text-mint" />
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-pastel-blue-light flex items-center justify-center
+                                    transition-all duration-300 group-hover:bg-pastel-blue group-hover:scale-110">
+                      <Mail className="w-6 h-6 md:w-8 md:h-8 text-pastel-blue-dark transition-colors 
+                                       group-hover:text-pastel-blue-dark" />
                     </div>
-                    <span className="font-handwritten text-base md:text-lg lg:text-xl text-foreground 
+                    <span className="font-handwritten text-base md:text-lg lg:text-xl text-pastel-blue-light 
                                      text-center leading-tight">
                       {letter.name}
                     </span>
