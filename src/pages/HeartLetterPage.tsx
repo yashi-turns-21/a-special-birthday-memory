@@ -21,16 +21,13 @@ With all my heart ❤️`;
 
   return (
     <PageTransition>
-      <div 
-        className="page-container py-20 px-4 md:px-6 overflow-y-auto bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${parchmentTexture})` }}
-      >
+      <div className="page-container py-20 px-4 md:px-6 overflow-y-auto bg-pastel-blue">
         <BackButton to="/heart" />
 
-        <div className="absolute top-16 left-4 md:left-8 w-16 h-16 border-t-2 border-l-2 border-mint/30 rounded-tl-lg" />
-        <div className="absolute top-16 right-4 md:right-8 w-16 h-16 border-t-2 border-r-2 border-mint/30 rounded-tr-lg" />
-        <div className="absolute bottom-8 left-4 md:left-8 w-16 h-16 border-b-2 border-l-2 border-mint/30 rounded-bl-lg" />
-        <div className="absolute bottom-8 right-4 md:right-8 w-16 h-16 border-b-2 border-r-2 border-mint/30 rounded-br-lg" />
+        <div className="absolute top-16 left-4 md:left-8 w-16 h-16 border-t-2 border-l-2 border-mint/40 rounded-tl-lg" />
+        <div className="absolute top-16 right-4 md:right-8 w-16 h-16 border-t-2 border-r-2 border-mint/40 rounded-tr-lg" />
+        <div className="absolute bottom-8 left-4 md:left-8 w-16 h-16 border-b-2 border-l-2 border-mint/40 rounded-bl-lg" />
+        <div className="absolute bottom-8 right-4 md:right-8 w-16 h-16 border-b-2 border-r-2 border-mint/40 rounded-br-lg" />
 
         <div className="max-w-2xl mx-auto pt-10 relative z-10">
           <div 
