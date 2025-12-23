@@ -43,6 +43,8 @@
     --pastel-blue: 200 50% 80%;
     --pastel-blue-light: 200 60% 90%;
     --pastel-blue-dark: 200 45% 60%;
+    --dark-blue: 220 45% 25%;
+    --dark-blue-light: 220 40% 35%;
     --cream: 180 20% 97%;
     --cream-dark: 180 15% 92%;
     --blush: 168 30% 92%;
@@ -127,9 +129,10 @@
   }
 
   .letter-card {
-    @apply bg-vintage-paper rounded-2xl p-6 shadow-card
+    @apply rounded-2xl p-6 shadow-card
            transition-all duration-300 cursor-pointer
            hover:shadow-glow hover:scale-105 hover:-translate-y-1;
+    background-color: hsl(var(--dark-blue));
   }
 
   .parchment-bg {
@@ -215,6 +218,8 @@
   .bg-mint-light { background-color: hsl(var(--mint-light)); }
   .bg-pastel-blue { background-color: hsl(var(--pastel-blue)); }
   .bg-pastel-blue-light { background-color: hsl(var(--pastel-blue-light)); }
+  .bg-dark-blue { background-color: hsl(var(--dark-blue)); }
+  .bg-dark-blue-light { background-color: hsl(var(--dark-blue-light)); }
   
   .text-mint { color: hsl(var(--mint)); }
   .text-mint-dark { color: hsl(var(--mint-dark)); }
