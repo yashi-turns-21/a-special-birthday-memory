@@ -1,7 +1,8 @@
 import { useState } from "react";
 import BackButton from "@/components/BackButton";
 import PageTransition from "@/components/PageTransition";
-import { X, Camera, ImageIcon } from "lucide-react";
+import { X, Camera, ImageIcon, ArrowLeft } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 // Timeline events - you can customize these
 const timelineEvents = [
@@ -59,7 +60,12 @@ const timelineEvents = [
 ];
 
 const GalleryPage = () => {
+  const [selectedEvent, setSelectedEvent] = useState<number | null>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<{ eventId: number; photoId: number } | null>(null);
+
+  const currentEvent = selectedEvent !== null 
+    ? timelineEvents.find(e => e.id === selectedEvent) 
+    : null;
 
   return (
     <PageTransition>
@@ -86,58 +92,100 @@ const GalleryPage = () => {
               </p>
             </div>
 
-            {/* Timeline */}
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="timeline-line" />
+            {/* Timeline with Tabs or Event Detail View */}
+            {selectedEvent === null ? (
+              <Tabs defaultValue="timeline" className="w-full">
+                <TabsList className="w-full justify-start overflow-x-auto flex-nowrap bg-transparent gap-2 h-auto p-0 mb-8">
+                  {timelineEvents.map((event, index) => (
+                    <TabsTrigger
+                      key={event.id}
+                      value={`event-${event.id}`}
+                      onClick={() => setSelectedEvent(event.id)}
+                      className="px-6 py-4 rounded-xl bg-dark-blue text-pastel-blue-light font-handwritten text-lg
+                                 border-2 border-mint/20 shadow-card whitespace-nowrap
+                                 data-[state=active]:bg-mint data-[state=active]:text-foreground
+                                 hover:bg-dark-blue-light hover:border-mint/40 transition-all duration-300
+                                 opacity-0 animate-slide-up"
+                      style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                    >
+                      {event.eventName}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
 
-              {/* Timeline events */}
-              {timelineEvents.map((event, eventIndex) => (
-                <div
-                  key={event.id}
-                  className="relative mb-16 last:mb-0 opacity-0 animate-slide-up"
-                  style={{ animationDelay: `${0.2 + eventIndex * 0.15}s` }}
-                >
-                  {/* Timeline dot */}
-                  <div className="timeline-dot" style={{ top: "1.5rem" }} />
-
-                  {/* Event content - alternating sides */}
-                  <div className={`flex ${eventIndex % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                    <div className="w-1/2" />
-                    <div className={`w-1/2 ${eventIndex % 2 === 0 ? 'pl-8' : 'pr-8'}`}>
-                      {/* Event name */}
-                      <h3 className="font-display text-xl md:text-2xl text-foreground mb-4 
-                                     bg-cream px-3 py-1 rounded-lg inline-block shadow-soft">
-                        {event.eventName}
-                      </h3>
-
-                      {/* Photos grid */}
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        {event.photos.map((photo) => (
-                          <button
-                            key={photo.id}
-                            onClick={() => setSelectedPhoto({ eventId: event.id, photoId: photo.id })}
-                            className="aspect-square bg-cream-dark rounded-xl overflow-hidden shadow-card
-                                       transition-all duration-300 hover:shadow-glow hover:scale-[1.03]
-                                       focus:outline-none focus:ring-2 focus:ring-mint/50
-                                       border-2 border-dashed border-mint/30"
-                          >
-                            <div className="w-full h-full flex items-center justify-center bg-mint-light/30">
-                              <div className="text-center p-2">
-                                <ImageIcon className="w-6 h-6 md:w-8 md:h-8 text-mint/50 mx-auto mb-1" />
-                                <span className="text-muted-foreground text-xs md:text-sm">
-                                  {photo.label}
-                                </span>
-                              </div>
-                            </div>
-                          </button>
-                        ))}
+                {/* Timeline visual indicator */}
+                <div className="relative mt-8">
+                  <div className="timeline-line" />
+                  {timelineEvents.map((event, index) => (
+                    <button
+                      key={event.id}
+                      onClick={() => setSelectedEvent(event.id)}
+                      className="relative mb-12 last:mb-0 w-full text-left opacity-0 animate-slide-up
+                                 group cursor-pointer"
+                      style={{ animationDelay: `${0.3 + index * 0.15}s` }}
+                    >
+                      <div className="timeline-dot" style={{ top: "0.5rem" }} />
+                      <div className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                        <div className="w-1/2" />
+                        <div className={`w-1/2 ${index % 2 === 0 ? 'pl-8' : 'pr-8'}`}>
+                          <div className="bg-dark-blue px-6 py-4 rounded-xl shadow-card border-2 border-mint/20
+                                          group-hover:border-mint/50 group-hover:shadow-glow transition-all duration-300">
+                            <h3 className="font-handwritten text-xl md:text-2xl text-pastel-blue-light">
+                              {event.eventName}
+                            </h3>
+                            <p className="font-handwritten text-sm text-pastel-blue/70 mt-1">
+                              {event.photos.length} photos • Click to view
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    </button>
+                  ))}
+                </div>
+              </Tabs>
+            ) : (
+              /* Event Detail View */
+              <div className="opacity-0 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}>
+                <button
+                  onClick={() => setSelectedEvent(null)}
+                  className="flex items-center gap-2 text-mint hover:text-mint-dark transition-colors mb-8
+                             font-handwritten text-lg"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                  Back to Timeline
+                </button>
+
+                <div className="bg-dark-blue rounded-2xl p-6 md:p-8 shadow-card border-2 border-mint/20">
+                  <h2 className="font-handwritten text-3xl md:text-4xl text-pastel-blue-light mb-6 text-center">
+                    {currentEvent?.eventName}
+                  </h2>
+
+                  {/* Photos grid */}
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {currentEvent?.photos.map((photo, index) => (
+                      <button
+                        key={photo.id}
+                        onClick={() => setSelectedPhoto({ eventId: currentEvent.id, photoId: photo.id })}
+                        className="aspect-square bg-pastel-blue-light/20 rounded-xl overflow-hidden
+                                   transition-all duration-300 hover:shadow-glow hover:scale-[1.03]
+                                   focus:outline-none focus:ring-2 focus:ring-mint/50
+                                   border-2 border-dashed border-mint/30 opacity-0 animate-fade-in"
+                        style={{ animationDelay: `${0.2 + index * 0.05}s`, animationFillMode: "forwards" }}
+                      >
+                        <div className="w-full h-full flex items-center justify-center">
+                          <div className="text-center p-2">
+                            <ImageIcon className="w-8 h-8 md:w-10 md:h-10 text-pastel-blue/50 mx-auto mb-2" />
+                            <span className="text-pastel-blue-light text-xs md:text-sm font-handwritten">
+                              {photo.label}
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
           </div>
         </div>
 
