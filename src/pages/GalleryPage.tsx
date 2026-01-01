@@ -93,56 +93,36 @@ const GalleryPage = () => {
             </div>
 
             {/* Timeline with Tabs or Event Detail View */}
-            {selectedEvent === null ? (
-              <Tabs defaultValue="timeline" className="w-full">
-                <TabsList className="w-full justify-start overflow-x-auto flex-nowrap bg-transparent gap-2 h-auto p-0 mb-8">
-                  {timelineEvents.map((event, index) => (
-                    <TabsTrigger
-                      key={event.id}
-                      value={`event-${event.id}`}
-                      onClick={() => setSelectedEvent(event.id)}
-                      className="px-6 py-4 rounded-xl bg-dark-blue text-pastel-blue-light font-handwritten text-lg
-                                 border-2 border-mint/20 shadow-card whitespace-nowrap
-                                 data-[state=active]:bg-mint data-[state=active]:text-foreground
-                                 hover:bg-dark-blue-light hover:border-mint/40 transition-all duration-300
-                                 opacity-0 animate-slide-up"
-                      style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-                    >
-                      {event.eventName}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-
-                {/* Timeline visual indicator */}
-                <div className="relative mt-8">
-                  <div className="timeline-line" />
-                  {timelineEvents.map((event, index) => (
-                    <button
-                      key={event.id}
-                      onClick={() => setSelectedEvent(event.id)}
-                      className="relative mb-12 last:mb-0 w-full text-left opacity-0 animate-slide-up
-                                 group cursor-pointer"
-                      style={{ animationDelay: `${0.3 + index * 0.15}s` }}
-                    >
-                      <div className="timeline-dot" style={{ top: "0.5rem" }} />
-                      <div className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                        <div className="w-1/2" />
-                        <div className={`w-1/2 ${index % 2 === 0 ? 'pl-8' : 'pr-8'}`}>
-                          <div className="bg-dark-blue px-6 py-4 rounded-xl shadow-card border-2 border-mint/20
-                                          group-hover:border-mint/50 group-hover:shadow-glow transition-all duration-300">
-                            <h3 className="font-handwritten text-xl md:text-2xl text-pastel-blue-light">
-                              {event.eventName}
-                            </h3>
-                            <p className="font-handwritten text-sm text-pastel-blue/70 mt-1">
-                              {event.photos.length} photos • Click to view
-                            </p>
-                          </div>
+{selectedEvent === null ? (
+              /* Timeline visual indicator */
+              <div className="relative mt-8">
+                <div className="timeline-line" />
+                {timelineEvents.map((event, index) => (
+                  <button
+                    key={event.id}
+                    onClick={() => setSelectedEvent(event.id)}
+                    className="relative mb-12 last:mb-0 w-full text-left opacity-0 animate-slide-up
+                               group cursor-pointer"
+                    style={{ animationDelay: `${0.3 + index * 0.15}s` }}
+                  >
+                    <div className="timeline-dot" style={{ top: "0.5rem" }} />
+                    <div className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                      <div className="w-1/2" />
+                      <div className={`w-1/2 ${index % 2 === 0 ? 'pl-8' : 'pr-8'}`}>
+                        <div className="bg-dark-blue px-6 py-4 rounded-xl shadow-card border-2 border-mint/20
+                                        group-hover:border-mint/50 group-hover:shadow-glow transition-all duration-300">
+                          <h3 className="font-handwritten text-xl md:text-2xl text-pastel-blue-light">
+                            {event.eventName}
+                          </h3>
+                          <p className="font-handwritten text-sm text-pastel-blue/70 mt-1">
+                            {event.photos.length} photos • Click to view
+                          </p>
                         </div>
                       </div>
-                    </button>
-                  ))}
-                </div>
-              </Tabs>
+                    </div>
+                  </button>
+                ))}
+              </div>
             ) : (
               /* Event Detail View */
               <div className="opacity-0 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}>
