@@ -156,9 +156,6 @@ const GalleryPage = () => {
                 </button>
 
                 <div className="bg-dark-blue rounded-2xl p-6 md:p-8 shadow-card border-2 border-mint/20">
-                  <h2 className="font-handwritten text-3xl md:text-4xl text-pastel-blue-light mb-6 text-center">
-                    {currentEvent?.eventName}
-                  </h2>
 
                   {/* Photos grid */}
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
