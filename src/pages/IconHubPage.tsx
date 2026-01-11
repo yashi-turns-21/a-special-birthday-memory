@@ -1,43 +1,15 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackButton from "@/components/BackButton";
 import PageTransition from "@/components/PageTransition";
-import { ScrollText, Heart, Camera, Lock } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { ScrollText, Heart, Camera } from "lucide-react";
 
 const IconHubPage = () => {
   const navigate = useNavigate();
-  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleHeartClick = () => {
-    setShowPasswordDialog(true);
-    setPassword("");
-    setError("");
-  };
-
-  const handlePasswordSubmit = () => {
-    if (password === "mybbg") {
-      setShowPasswordDialog(false);
-      navigate("/heart");
-    } else {
-      setError("Incorrect password");
-    }
-  };
 
   const icons = [
-    { icon: ScrollText, label: "Letters", path: "/letters", delay: "0.2s", locked: false },
-    { icon: Heart, label: "Heart", path: "/heart", delay: "0.4s", locked: true },
-    { icon: Camera, label: "Gallery", path: "/gallery", delay: "0.6s", locked: false },
+    { icon: ScrollText, label: "Letters", path: "/letters", delay: "0.2s" },
+    { icon: Heart, label: "Heart", path: "/heart", delay: "0.4s" },
+    { icon: Camera, label: "Gallery", path: "/gallery", delay: "0.6s" },
   ];
 
   return (
@@ -55,19 +27,10 @@ const IconHubPage = () => {
         </h2>
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 lg:gap-24 px-6">
-          {icons.map(({ icon: Icon, label, path, delay, locked }) => (
+          {icons.map(({ icon: Icon, label, path, delay }) => (
             <div key={label} className="flex flex-col items-center gap-4 opacity-0 animate-slide-up" style={{ animationDelay: delay }}>
-              <button 
-                onClick={() => locked ? handleHeartClick() : navigate(path)} 
-                className="btn-icon group hover:bg-mint-light/30 relative" 
-                aria-label={label}
-              >
+              <button onClick={() => navigate(path)} className="btn-icon group hover:bg-mint-light/30" aria-label={label}>
                 <Icon className="w-10 h-10 md:w-12 md:h-12 text-mint-dark transition-all duration-300 group-hover:text-mint group-hover:scale-110" />
-                {locked && (
-                  <div className="absolute -bottom-1 -right-1 bg-rose-100 rounded-full p-1">
-                    <Lock className="w-3 h-3 text-rose-500" />
-                  </div>
-                )}
               </button>
               <span className="font-handwritten text-xl md:text-2xl text-muted-foreground">{label}</span>
             </div>
@@ -81,42 +44,6 @@ const IconHubPage = () => {
             <div className="w-8 h-px bg-current" />
           </div>
         </div>
-
-        <Dialog open={showPasswordDialog} onOpenChange={setShowPasswordDialog}>
-          <DialogContent className="bg-cream border-mint/30">
-            <DialogHeader>
-              <DialogTitle className="font-display text-2xl text-foreground flex items-center gap-2">
-                <Lock className="w-5 h-5 text-rose-400" />
-                Secret Section
-              </DialogTitle>
-              <DialogDescription className="font-handwritten text-lg text-muted-foreground">
-                This is a special place just for you. Enter the password to continue...
-              </DialogDescription>
-            </DialogHeader>
-            <div className="space-y-4 pt-4">
-              <Input
-                type="password"
-                placeholder="Enter password..."
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setError("");
-                }}
-                onKeyDown={(e) => e.key === "Enter" && handlePasswordSubmit()}
-                className="bg-white/50 border-mint/30 font-handwritten text-lg"
-              />
-              {error && (
-                <p className="text-rose-500 text-sm font-handwritten">{error}</p>
-              )}
-              <Button 
-                onClick={handlePasswordSubmit}
-                className="w-full bg-mint hover:bg-mint-dark text-white font-handwritten text-lg"
-              >
-                Unlock
-              </Button>
-            </div>
-          </DialogContent>
-        </Dialog>
       </div>
     </PageTransition>
   );
