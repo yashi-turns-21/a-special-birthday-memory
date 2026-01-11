@@ -10,6 +10,7 @@ import IconHubPage from "./pages/IconHubPage";
 import LettersOverviewPage from "./pages/LettersOverviewPage";
 import IndividualLetterPage from "./pages/IndividualLetterPage";
 import HeartPage from "./pages/HeartPage";
+import HeartLockPage from "./pages/HeartLockPage";
 import HeartLetterPage from "./pages/HeartLetterPage";
 import SpotifyPage from "./pages/SpotifyPage";
 import GalleryPage from "./pages/GalleryPage";
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/hub" element={<IconHubPage />} />
           <Route path="/letters" element={<LettersOverviewPage />} />
           <Route path="/letter/:id" element={<IndividualLetterPage />} />
+          <Route path="/heart-lock" element={<HeartLockPage />} />
           <Route path="/heart" element={<HeartPage />} />
           <Route path="/heart-letter" element={<HeartLetterPage />} />
           <Route path="/spotify" element={<SpotifyPage />} />
