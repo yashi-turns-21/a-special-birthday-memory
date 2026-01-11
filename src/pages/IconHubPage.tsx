@@ -8,7 +8,7 @@ const IconHubPage = () => {
 
   const icons = [
     { icon: ScrollText, label: "Letters", path: "/letters", delay: "0.2s" },
-    { icon: Heart, label: "Heart", path: "/heart", delay: "0.4s" },
+    { icon: Heart, label: "Heart", path: "/heart-lock", delay: "0.4s" },
     { icon: Camera, label: "Gallery", path: "/gallery", delay: "0.6s" },
   ];
 
